@@ -61,9 +61,22 @@ validate USERNAME TOKEN AWS_PROFILE
 OUTPUT="$(aws sts get-session-token --serial-number arn:aws:iam::600756176935:mfa/$USERNAME --token-code $TOKEN --profile $AWS_PROFILE --duration-seconds 129600)"
 
 ACCESS_KEY_ID=$(echo $OUTPUT | jq '.Credentials.AccessKeyId' | sed -e 's/^"//' -e 's/"$//')
+echo $ACCESS_KEY_ID
+
 SECRET_ACCESS_KEY=$(echo $OUTPUT | jq '.Credentials.SecretAccessKey' | sed -e 's/^"//' -e 's/"$//')
+echo $SECRET_ACCESS_KEY
+
 SESSION_TOKEN=$(echo $OUTPUT | jq '.Credentials.SessionToken' | sed -e 's/^"//' -e 's/"$//')
+echo $SESSION_TOKEN
 
 aws configure set aws_access_key_id $ACCESS_KEY_ID --profile mfa
 aws configure set aws_secret_access_key $SECRET_ACCESS_KEY --profile mfa
 aws configure set aws_session_token $SESSION_TOKEN --profile mfa
+
+aws configure set aws_access_key_id $ACCESS_KEY_ID --profile mfa-stg
+aws configure set aws_secret_access_key $SECRET_ACCESS_KEY --profile mfa-stg
+aws configure set aws_session_token $SESSION_TOKEN --profile mfa-stg
+
+aws configure set aws_access_key_id $ACCESS_KEY_ID --profile mfa-prod
+aws configure set aws_secret_access_key $SECRET_ACCESS_KEY --profile mfa-prod
+aws configure set aws_session_token $SESSION_TOKEN --profile mfa-prod
