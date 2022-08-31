@@ -29,12 +29,14 @@ aws_session_token = ---
 aws_access_key_id = ---
 aws_secret_access_key = ---
 aws_session_token = ---
+role_arn = arn:aws:iam::688411838365:role/lawnstarter-engineer-staging
 source_profile = mfa
 
 [mfa-prod]
 aws_access_key_id = ---
 aws_secret_access_key = ---
 aws_session_token = ---
+role_arn = arn:aws:iam::512078713017:role/lawnstarter-engineer-production
 source_profile = mfa
 ```
 
