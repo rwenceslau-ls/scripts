@@ -6,8 +6,17 @@ Automatically generates token from STS and updates `~/.aws/credentials` file.
 
 ### How to use:
 
+Install JQ
+
 ```
+sudo apt install -y jq
+```
+
 bash mfa_login.sh -u <aws_username> -t <mfa_code> -p <aws_profile_name/env_name>
+
+```
+Example:
+bash mfa_login.sh -u rwenceslau -t 864915 -p delivery-team
 
 # Testing
 aws s3 ls --profile mfa
